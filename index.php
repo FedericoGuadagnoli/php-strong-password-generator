@@ -14,18 +14,21 @@ $length = $_POST['length'] ?? '';
 
 // Genero la password richiamando la funzione e inserendo come parametro la variabile con il valore recuperato dall'input e verifico che sia un numero con la funzione is_numeric.
 // Se è vero...
-if (is_numeric($length)) {
+if (is_numeric($length) && $length <= 20) {
     $password = generatePassword($length);
 } 
 
 // Se clicco il botton annulla...
-else if (isset($_POST['cancel'])) {
-    $password = '';
+else if (isset($_POST['cancel']) || !is_numeric($length)) {
+    $password = 'Nessun paramentro valido inserito';
 }
 
-// Se è falso...
+// Se è più di 20 caratteri
+else if ($length > 20){
+    $password = 'Puoi scegliere fino a un massimo di 20 caratteri';
+}
 else {
-    $password = 'Nessun parametro valida inserito';
+    $password = 'Nessun paramentro valido inserito';
 }
 ?>
 
