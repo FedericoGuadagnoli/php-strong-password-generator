@@ -1,5 +1,4 @@
 <?php 
-
 // Creo una funzione per generare una password randomica fra i caratteri disponibili con lunghezza presa dall'input
 function generatePassword($length) {
     $chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_-=+;:,.?";
@@ -15,7 +14,14 @@ $length = $_POST['length'] ?? '';
 // Genero la password richiamando la funzione e inserendo come parametro la variabile con il valore recuperato dall'input e verifico che sia un numero con la funzione is_numeric.
 // Se è vero...
 if (is_numeric($length) && $length <= 20) {
+
     $password = generatePassword($length);
+    if ($password) {
+        session_start();
+        $_SESSION['password'] = $password;
+        header ('Location: success.php');
+        exit;
+    }
 } 
 
 // Se clicco il botton annulla...
@@ -30,4 +36,6 @@ else if ($length > 20){
 else {
     $password = 'Nessun paramentro valido inserito';
 }
+
+
 ?>
