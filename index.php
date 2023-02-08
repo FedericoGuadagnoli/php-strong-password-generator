@@ -18,6 +18,11 @@ if (is_numeric($length)) {
     $password = generatePassword($length);
 } 
 
+// Se clicco il botton annulla...
+else if (isset($_POST['cancel'])) {
+    $password = '';
+}
+
 // Se è falso...
 else {
     $password = 'Nessun parametro valida inserito';
@@ -51,12 +56,12 @@ else {
             <p class="py-5 ps-2 text-light bg-info rounded h3"><?php echo $password; ?></p>
             <form action="#" method="post" class=" bg-danger">
                 <div class="d-flex justify-content-between p-3 mb-5">
-                    <label for="length" class="text-light">Lunghezza password</label>
-                    <input type="text" name="length" id="length">
+                    <label for="length" class="text-light h3">Lunghezza password</label>
+                    <input type="text" name="length" id="length" class="h3">
                 </div>
                 <div class="p-3">
-                    <button name="send" class="btn btn-primary">Invia</button>
-                    <button name="cancel" class="btn btn-secondary">Annulla</button>
+                    <button name="send" class="btn btn-primary fs-4">Invia</button>
+                    <button name="cancel" class="btn btn-secondary fs-4">Annulla</button>
                 </div>
             </form>
         </div>
